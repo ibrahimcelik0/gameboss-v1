@@ -1,0 +1,183 @@
+Ürün Gereksinimleri Belgesi (PRD)
+
+Proje Adı: Nexus Gaming Library (Steam & Epic Entegrasyonu)
+Versiyon: 1.0 (Front-End & UI/UX Odaklı)
+Tarih: 2 Mayıs 2026
+
+1. Proje Özeti ve Kapsam (Case)
+
+Oyuncuların farklı platformlardaki (Steam ve Epic Games) dijital oyun kütüphanelerini tek bir arayüzde toplamalarını sağlayan bir web tabanlı kütüphane ve istatistik paneli projesidir.
+
+Kapsam Sınırı: Bu proje tamamen Front-End odaklı olarak geliştirilecektir. Gerçek bir arka uç (backend) veya veritabanı (veritabanı) entegrasyonu yapılmayacaktır. Kullanıcı girişleri, hesap bağlama işlemleri ve oyun verileri statik JSON (Mock) dosyaları üzerinden simüle edilecektir. Amaç; mükemmel bir UI/UX deneyimi sunan, tam işlevsel bir prototip (Proof of Concept) yaratmaktır.
+
+2. Teknik Kararlar
+
+Karar
+
+Seçim
+
+Neden
+
+Tech Stack
+
+React / Next.js (App Router)
+
+Modern, bileşen bazlı mimarisi ve sayfa yönlendirmelerindeki (routing) hızı sayesinde mükemmel kullanıcı deneyimi sağlar.
+
+State Management
+
+Zustand
+
+Redux gibi ağır yapılar yerine; filtreleme, tema, bağlı hesap durumları gibi global verileri yönetmek için hafif ve hızlıdır.
+
+Data Fetching
+
+TanStack Query + Mock API
+
+Statik JSON dosyalarından veri çekerken loading, error ve caching durumlarını (gerçek bir API'ye bağlanıyormuş gibi) simüle etmek için.
+
+Styling
+
+Tailwind CSS
+
+Utility-first yaklaşımı ile harici CSS dosyalarıyla uğraşmadan, doğrudan bileşen seviyesinde hızlı ve tutarlı tasarımlar çıkarmak için.
+
+İkonlar ve Grafikler
+
+Lucide React & Recharts
+
+Modern ikon seti ve istatistikleri (oynama süreleri vb.) görselleştirmek için performanslı grafik kütüphanesi.
+
+3. Klasör ve Mimari Yapısı
+
+Proje, yeniden kullanılabilirliği (reusability) artırmak için katmanlı bir yapıda kurgulanmıştır.
+
+src/
+├── app/               # Next.js App Router (Sayfalar)
+│   ├── (auth)/        # login, register sayfaları
+│   ├── (dashboard)/   # Ana istatistik ekranı
+│   ├── library/       # Ortak oyun kütüphanesi sayfası
+│   └── settings/      # Hesap bağlama ve profil ayarları
+├── components/        # Yeniden Kullanılabilir UI Bileşenleri
+│   ├── ui/            # Button, Card, Input, Modal, Badge (Atomik)
+│   ├── dashboard/     # StatsCard, PlaytimeChart, RecentGames
+│   ├── library/       # GameCard, FilterBar, PlatformToggle, SearchBox
+│   └── layout/        # Navbar, Sidebar, Footer, PageWrapper
+├── data/              # 📌 MOCK VERİLER (Gerçek API yerine)
+│   ├── mockSteam.json
+│   ├── mockEpic.json
+│   └── mockUser.json
+├── hooks/             # Custom Hook'lar (useLibrary, useAuth, useStats)
+├── store/             # Zustand Global State'leri (uiStore, platformStore)
+├── types/             # TypeScript interfaceleri (Game, User, Platform türleri)
+└── utils/             # Formatlayıcılar (saat çevirici, veri birleştirici fonksiyonlar)
+
+
+4. Modüller ve Kabul Kriterleri
+
+Modül 1: Auth & Profil (Arayüz Simülasyonu)
+
+Açıklama: Kullanıcının sisteme girdiğini ve profilini yönettiğini hissettiren ekranlar.
+
+Kabul Kriterleri:
+
+[ ] Giriş yap (Login) ve Kayıt ol (Register) form arayüzleri çizilmeli.
+
+[ ] "Misafir Olarak Devam Et" butonu ile mock verilerin olduğu ana sayfaya yönlendirme yapılmalı.
+
+[ ] Sağ üst köşede kullanıcı avatarı ve açılır menü (Dropdown) bulunmalı.
+
+Modül 2: Platform Entegrasyonları (Hesap Yönetimi)
+
+Açıklama: Kullanıcının Steam ve Epic Games hesaplarını bağladığını simüle eden ayarlar modülü.
+
+Kabul Kriterleri:
+
+[ ] Ayarlar sayfasında "Steam" ve "Epic Games" için özel renklerde "Bağla" (Connect) butonları bulunmalı.
+
+[ ] Butona tıklandığında bir yüklenme (loading) animasyonu çıkmalı ve ardından durum "Bağlandı" (Connected) olarak güncellenmeli (Zustand üzerinden).
+
+[ ] Hesap bağlandığında, o platforma ait sahte veriler (Mock JSON) sisteme dahil edilmeli. Hesap ayrıldığında (Disconnect) veriler listeden uçmalı.
+
+Modül 3: Ortak Kütüphane (Unified Library)
+
+Açıklama: Tüm oyunların listelendiği ana kütüphane ekranı.
+
+Kabul Kriterleri:
+
+[ ] Steam ve Epic verileri (JSON) birleştirilerek tek bir Grid yapısında (GameCard'lar halinde) gösterilmeli.
+
+[ ] GameCard Bileşeni: Oyun kapağı, isim, hangi platformda olduğu (ikon ile) ve toplam oynama süresi (saat cinsinden) yer almalı.
+
+[ ] Arama Çubuğu: Girilen harflere göre (gerçek zamanlı) oyun isimlerinde anında filtreleme yapabilmeli.
+
+[ ] Filtreler: "Tümü", "Steam", "Epic Games" sekmeleri (Tab) arasında geçiş yapılabilmeli.
+
+[ ] Sıralama: "A-Z", "En Çok Oynananlar", "Son Oynananlar" seçeneklerini içeren bir dropdown olmalı.
+
+Modül 4: Dashboard ve İstatistikler
+
+Açıklama: Kullanıcının oyun alışkanlıklarını özetleyen görsel panel.
+
+Kabul Kriterleri:
+
+[ ] En üstte 3 adet StatCard bulunmalı: "Toplam Oyun Sayısı", "Toplam Oynama Süresi", "Bağlı Platformlar".
+
+[ ] Grafik (Recharts): Platformlara göre oyun dağılımını gösteren bir Pasta Grafik (Pie Chart) veya son 2 haftanın oynama süresini gösteren Çubuk Grafik (Bar Chart) eklenmeli.
+
+[ ] Son Oynananlar: Her iki platform verisi harmanlanarak lastPlayed tarihine göre en güncel 5 oyun yatay bir liste (List Item) halinde gösterilmeli.
+
+5. Veri Modelleri (Mock JSON Şemaları)
+
+Uygulamanın besleneceği veri yapısı standartları:
+
+Game (Oyun Modeli):
+
+{
+  "id": "1001",
+  "title": "Cyberpunk 2077",
+  "platform": "steam", // veya "epic"
+  "playtime_minutes": 5400, // Ekrana 90 Saat olarak basılacak
+  "last_played": "2026-04-28T14:30:00Z",
+  "cover_image": "[https://ornek-resim-linki.com/cyberpunk.jpg](https://ornek-resim-linki.com/cyberpunk.jpg)",
+  "is_installed": true
+}
+
+
+UserStats (İstatistik Modeli):
+
+{
+  "total_games": 142,
+  "total_playtime_hours": 1250,
+  "platform_distribution": {
+    "steam": 110,
+    "epic": 32
+  }
+}
+
+
+6. Tasarım ve UI/UX Kılavuzu
+
+Tema: Koyu (Dark) mod öncelikli tasarım. Arka planlar koyu gri/siyah (bg-slate-950), kartlar biraz daha açık tonlarda (bg-slate-900) olacak.
+
+Aksan Renkleri:
+
+Genel Uygulama Rengi (Primary): Elektrik Mavisi veya Mor.
+
+Steam Rengi: #1b2838 (Koyu Mavi) ve #66c0f4 (Açık Mavi Text).
+
+Epic Games Rengi: #313131 ve Beyaz/Sade tonlar.
+
+Tipografi: Modern ve okunabilir Sans-Serif font (Inter veya Roboto).
+
+Responsive: Grid yapısı mobilde tek sütun (grid-cols-1), tablette iki sütun (grid-cols-2), masaüstünde 4 veya 5 sütun (grid-cols-4) şeklinde adapte olmalı.
+
+Geri Bildirimler: Buton tıklamalarında (hover/active), arama yaparken (empty state - "Oyun bulunamadı") pürüzsüz geçişler (transitions) sağlanmalı.
+
+7. Açık Kararlar ve Sonraki Adımlar
+
+Deduplication (Aynı oyunu birleştirme): Eğer "The Witcher 3" hem Steam hem Epic mock datasında varsa, kütüphanede ayrı ayrı 2 kart mı gösterilecek, yoksa tek kartta "Steam + Epic" logoları yan yana ve süreleri toplanmış mı gösterilecek? (Varsayılan: Şimdilik ayrı ayrı kartlar olarak gösterilecek, V2'de birleştirilecek.)
+
+Oyun Görselleri: Gerçekçi görünmesi için mock JSON içerisine gerçek oyun kapak (cover) linkleri (örn. Steam CDN linkleri) manuel olarak eklenecektir.
+
+Başlangıç Adımı: UI bileşenlerinin (Card, Button, Navbar) oluşturulması ve ardından Mock JSON dosyalarının sisteme bağlanması.

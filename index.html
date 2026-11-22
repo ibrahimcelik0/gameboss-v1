@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="tr" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nexus Gaming Library</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  <style type="text/tailwindcss">
+    /* ── TAILWIND V4 THEME ── */
+    @custom-variant dark (&:is(.dark *));
+
+    :root {
+      --background: oklch(0.9816 0.0017 247.8390);
+      --foreground: oklch(0.1649 0.0352 281.8285);
+      --card: oklch(1.0000 0 0);
+      --card-foreground: oklch(0.1649 0.0352 281.8285);
+      --popover: oklch(1.0000 0 0);
+      --popover-foreground: oklch(0.1649 0.0352 281.8285);
+      --primary: oklch(0.6726 0.2904 341.4084);
+      --primary-foreground: oklch(1.0000 0 0);
+      --secondary: oklch(0.9595 0.0200 286.0164);
+      --secondary-foreground: oklch(0.1649 0.0352 281.8285);
+      --muted: oklch(0.9595 0.0200 286.0164);
+      --muted-foreground: oklch(0.5490 0.0420 278.1046);
+      --accent: oklch(0.8903 0.1739 171.2690);
+      --accent-foreground: oklch(0.1649 0.0352 281.8285);
+      --destructive: oklch(0.6535 0.2348 34.0370);
+      --destructive-foreground: oklch(1.0000 0 0);
+      --border: oklch(0.9205 0.0086 225.0878);
+      --input: oklch(0.9205 0.0086 225.0878);
+      --ring: oklch(0.6726 0.2904 341.4084);
+      --chart-1: oklch(0.6726 0.2904 341.4084);
+      --chart-2: oklch(0.5488 0.2944 299.0954);
+      --chart-3: oklch(0.8442 0.1457 209.2851);
+      --chart-4: oklch(0.8903 0.1739 171.2690);
+      --chart-5: oklch(0.9168 0.1915 101.4070);
+      --sidebar: oklch(0.9595 0.0200 286.0164);
+      --sidebar-foreground: oklch(0.1649 0.0352 281.8285);
+      --sidebar-primary: oklch(0.6726 0.2904 341.4084);
+      --sidebar-primary-foreground: oklch(1.0000 0 0);
+      --sidebar-accent: oklch(0.8903 0.1739 171.2690);
+      --sidebar-accent-foreground: oklch(0.1649 0.0352 281.8285);
+      --sidebar-border: oklch(0.9205 0.0086 225.0878);
+      --sidebar-ring: oklch(0.6726 0.2904 341.4084);
+      --font-sans: Outfit, sans-serif;
+      --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+      --font-mono: Fira Code, monospace;
+      --radius: 0.625rem;
+      --shadow-2xs: 0px 4px 8px -2px hsl(0 0% 0% / 0.05);
+      --shadow-xs: 0px 4px 8px -2px hsl(0 0% 0% / 0.05);
+      --shadow-sm: 0px 4px 8px -2px hsl(0 0% 0% / 0.10), 0px 1px 2px -3px hsl(0 0% 0% / 0.10);
+      --shadow: 0px 4px 8px -2px hsl(0 0% 0% / 0.10), 0px 1px 2px -3px hsl(0 0% 0% / 0.10);
+      --shadow-md: 0px 4px 8px -2px hsl(0 0% 0% / 0.10), 0px 2px 4px -3px hsl(0 0% 0% / 0.10);
+      --shadow-lg: 0px 4px 8px -2px hsl(0 0% 0% / 0.10), 0px 4px 6px -3px hsl(0 0% 0% / 0.10);
+      --shadow-xl: 0px 4px 8px -2px hsl(0 0% 0% / 0.10), 0px 8px 10px -3px hsl(0 0% 0% / 0.10);
+      --shadow-2xl: 0px 4px 8px -2px hsl(0 0% 0% / 0.25);
+
+      /* ── BRAND COLORS (platform-specific, not theme-controlled) ── */
+      --steam: #1b2838;
+      --steam-light: #2a475e;
+      --steam-accent: #66c0f4;
+      --epic: #121212;
+      --epic-accent: #0078f2;
+      --green: #1db954;
+
+      /* ── APP ALIASES → THEME TOKENS ── */
+      --bg: var(--background);
+      --surface: var(--card);
+      --surface2: var(--secondary);
+      --text: var(--foreground);
+      --text-muted: var(--muted-foreground);
+    }
+
+    .dark {
+      --background: oklch(0.1649 0.0352 281.8285);
+      --foreground: oklch(0.9513 0.0074 260.7315);
+      --card: oklch(0.2542 0.0611 281.1423);
+      --card-foreground: oklch(0.9513 0.0074 260.7315);
+      --popover: oklch(0.2542 0.0611 281.1423);
+      --popover-foreground: oklch(0.9513 0.0074 260.7315);
+      --primary: oklch(0.6726 0.2904 341.4084);
+      --primary-foreground: oklch(1.0000 0 0);
+      --secondary: oklch(0.2542 0.0611 281.1423);
+      --secondary-foreground: oklch(0.9513 0.0074 260.7315);
+      --muted: oklch(0.2123 0.0522 280.9917);
+      --muted-foreground: oklch(0.6245 0.0500 278.1046);
+      --accent: oklch(0.8903 0.1739 171.2690);
+      --accent-foreground: oklch(0.1649 0.0352 281.8285);
+      --destructive: oklch(0.6535 0.2348 34.0370);
+      --destructive-foreground: oklch(1.0000 0 0);
+      --border: oklch(0.3279 0.0832 280.7890);
+      --input: oklch(0.3279 0.0832 280.7890);
+      --ring: oklch(0.6726 0.2904 341.4084);
+      --chart-1: oklch(0.6726 0.2904 341.4084);
+      --chart-2: oklch(0.5488 0.2944 299.0954);
+      --chart-3: oklch(0.8442 0.1457 209.2851);
+      --chart-4: oklch(0.8903 0.1739 171.2690);
+      --chart-5: oklch(0.9168 0.1915 101.4070);
+      --sidebar: oklch(0.1649 0.0352 281.8285);
+      --sidebar-foreground: oklch(0.9513 0.0074 260.7315);
+      --sidebar-primary: oklch(0.6726 0.2904 341.4084);
+      --sidebar-primary-foreground: oklch(1.0000 0 0);
+      --sidebar-accent: oklch(0.8903 0.1739 171.2690);
+      --sidebar-accent-foreground: oklch(0.1649 0.0352 281.8285);
+      --sidebar-border: oklch(0.3279 0.0832 280.7890);
+      --sidebar-ring: oklch(0.6726 0.2904 341.4084);
+    }
+
+    @theme inline {
+      --color-background: var(--background);
+      --color-foreground: var(--foreground);
+      --color-card: var(--card);
+      --color-card-foreground: var(--card-foreground);
+      --color-popover: var(--popover);
+      --color-popover-foreground: var(--popover-foreground);
+      --color-primary: var(--primary);
+      --color-primary-foreground: var(--primary-foreground);
+      --color-secondary: var(--secondary);
+      --color-secondary-foreground: var(--secondary-foreground);
+      --color-muted: var(--muted);
+      --color-muted-foreground: var(--muted-foreground);
+      --color-accent: var(--accent);
+      --color-accent-foreground: var(--accent-foreground);
+      --color-destructive: var(--destructive);
+      --color-destructive-foreground: var(--destructive-foreground);
+      --color-border: var(--border);
+      --color-input: var(--input);
+      --color-ring: var(--ring);
+      --color-chart-1: var(--chart-1);
+      --color-chart-2: var(--chart-2);
+      --color-chart-3: var(--chart-3);
+      --color-chart-4: var(--chart-4);
+      --color-chart-5: var(--chart-5);
+      --color-sidebar: var(--sidebar);
+      --color-sidebar-foreground: var(--sidebar-foreground);
+      --color-sidebar-primary: var(--sidebar-primary);
+      --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+      --color-sidebar-accent: var(--sidebar-accent);
+      --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+      --color-sidebar-border: var(--sidebar-border);
+      --color-sidebar-ring: var(--sidebar-ring);
+      --font-sans: var(--font-sans);
+      --font-mono: var(--font-mono);
+      --font-serif: var(--font-serif);
+      --radius-sm: calc(var(--radius) - 4px);
+      --radius-md: calc(var(--radius) - 2px);
+      --radius-lg: var(--radius);
+      --radius-xl: calc(var(--radius) + 4px);
+      --shadow-2xs: var(--shadow-2xs);
+      --shadow-xs: var(--shadow-xs);
+      --shadow-sm: var(--shadow-sm);
+      --shadow: var(--shadow);
+      --shadow-md: var(--shadow-md);
+      --shadow-lg: var(--shadow-lg);
+      --shadow-xl: var(--shadow-xl);
+      --shadow-2xl: var(--shadow-2xl);
+    }
+
+    @layer base {
+      * { border-color: var(--border); }
+      body { background-color: var(--background); color: var(--foreground); }
+    }
+
+    /* ── APP LAYOUT ── */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      width: 240px;
+      flex-shrink: 0;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      padding: 20px 0;
+    }
+    .sidebar-logo {
+      padding: 0 20px 24px;
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .sidebar-logo .icon {
+      width: 36px; height: 36px;
+      background: linear-gradient(135deg, var(--steam-accent), var(--epic-accent));
+      border-radius: 8px;
+      display: grid; place-items: center;
+      font-size: 18px;
+    }
+    .sidebar-section { font-size: 11px; color: var(--text-muted); padding: 6px 20px; text-transform: uppercase; letter-spacing: 1px; margin-top: 8px; }
+    .nav-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 10px 20px; cursor: pointer;
+      font-size: 14px; color: var(--text-muted);
+      border-left: 3px solid transparent;
+      transition: all .15s;
+    }
+    .nav-item:hover { background: var(--surface2); color: var(--text); }
+    .nav-item.active { background: var(--surface2); color: var(--steam-accent); border-left-color: var(--steam-accent); }
+    .nav-item svg { flex-shrink: 0; }
+
+    .platforms {
+      margin-top: auto;
+      padding: 16px;
+      border-top: 1px solid var(--border);
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .platform-badge {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 12px;
+      border-radius: var(--radius);
+      font-size: 13px; font-weight: 600;
+      cursor: pointer;
+    }
+    .platform-badge.steam { background: rgba(27,40,56,.6); border: 1px solid var(--steam-light); }
+    .platform-badge.epic  { background: rgba(18,18,18,.8); border: 1px solid #333; }
+    .platform-badge .dot { width: 8px; height: 8px; border-radius: 50%; }
+    .platform-badge.steam .dot { background: var(--steam-accent); }
+    .platform-badge.epic  .dot { background: var(--epic-accent); }
+
+    /* ── MAIN ── */
+    .main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+
+    /* TOPBAR */
+    .topbar {
+      height: 60px; flex-shrink: 0;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; padding: 0 24px; gap: 16px;
+    }
+    .topbar h1 { font-size: 18px; font-weight: 700; flex: 1; }
+    .search-box {
+      display: flex; align-items: center; gap: 8px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 6px 12px;
+      width: 260px;
+    }
+    .search-box input {
+      background: none; border: none; outline: none;
+      color: var(--text); font-size: 13px; width: 100%;
+    }
+    .search-box input::placeholder { color: var(--text-muted); }
+    .avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: linear-gradient(135deg, #7c3aed, var(--steam-accent));
+      display: grid; place-items: center; font-size: 14px; font-weight: 700;
+      cursor: pointer; flex-shrink: 0;
+    }
+
+    /* PAGES */
+    .page { display: none; flex: 1; overflow-y: auto; padding: 28px; }
+    .page.active { display: block; }
+
+    /* ── DASHBOARD ── */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px; margin-bottom: 28px;
+    }
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+    }
+    .stat-card .label { font-size: 12px; color: var(--text-muted); margin-bottom: 8px; text-transform: uppercase; letter-spacing: .5px; }
+    .stat-card .value { font-size: 28px; font-weight: 800; }
+    .stat-card .sub   { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+    .stat-card .icon-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+    .stat-card .stat-icon {
+      width: 40px; height: 40px; border-radius: 8px;
+      display: grid; place-items: center; font-size: 18px;
+    }
+
+    .charts-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 28px; }
+    .chart-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+    }
+    .chart-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 20px; }
+
+    /* BAR CHART */
+    .bar-chart { display: flex; align-items: flex-end; gap: 8px; height: 120px; }
+    .bar-group { display: flex; flex-direction: column; align-items: center; gap: 4px; flex: 1; }
+    .bar-group .bar {
+      width: 100%; border-radius: 4px 4px 0 0;
+      transition: opacity .2s;
+    }
+    .bar-group .bar:hover { opacity: .8; cursor: pointer; }
+    .bar-group .bar-label { font-size: 11px; color: var(--text-muted); }
+    .bar-group .bar-val { font-size: 10px; color: var(--text-muted); }
+
+    /* PIE CHART */
+    .pie-wrap { display: flex; align-items: center; gap: 24px; }
+    .pie { position: relative; width: 100px; height: 100px; flex-shrink: 0; }
+    .pie svg { transform: rotate(-90deg); }
+    .pie-center {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+    }
+    .pie-center span:first-child { font-size: 20px; font-weight: 800; }
+    .pie-center span:last-child  { font-size: 10px; color: var(--text-muted); }
+    .pie-legend { display: flex; flex-direction: column; gap: 10px; }
+    .legend-item { display: flex; align-items: center; gap: 8px; font-size: 13px; }
+    .legend-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+
+    /* RECENT GAMES */
+    .section-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 16px;
+    }
+    .section-header h3 { font-size: 15px; font-weight: 700; }
+    .section-header a { font-size: 13px; color: var(--steam-accent); cursor: pointer; text-decoration: none; }
+
+    .recent-list { display: flex; flex-direction: column; gap: 10px; }
+    .recent-item {
+      display: flex; align-items: center; gap: 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 12px 16px;
+      transition: border-color .15s;
+    }
+    .recent-item:hover { border-color: var(--steam-accent); cursor: pointer; }
+    .game-thumb {
+      width: 52px; height: 52px; border-radius: 8px;
+      flex-shrink: 0; object-fit: cover;
+      background: var(--surface2);
+      display: grid; place-items: center; font-size: 22px;
+    }
+    .recent-info { flex: 1; }
+    .recent-info .title { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+    .recent-info .meta  { font-size: 12px; color: var(--text-muted); display: flex; align-items: center; gap: 8px; }
+    .platform-tag {
+      font-size: 11px; font-weight: 700; padding: 2px 8px;
+      border-radius: 4px;
+    }
+    .platform-tag.steam { background: rgba(27,40,56,.8); color: var(--steam-accent); border: 1px solid var(--steam-light); }
+    .platform-tag.epic  { background: rgba(18,18,18,.8); color: #7ab3f5; border: 1px solid #2a2a2e; }
+    .playtime {
+      text-align: right;
+    }
+    .playtime .hours { font-size: 20px; font-weight: 800; color: var(--text); }
+    .playtime .unit  { font-size: 11px; color: var(--text-muted); }
+
+    /* ── LIBRARY PAGE ── */
+    .filter-row {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 24px; flex-wrap: wrap;
+    }
+    .filter-btn {
+      padding: 7px 16px; border-radius: 20px; border: 1px solid var(--border);
+      background: var(--surface); color: var(--text-muted); font-size: 13px;
+      cursor: pointer; transition: all .15s;
+    }
+    .filter-btn:hover { border-color: var(--steam-accent); color: var(--text); }
+    .filter-btn.active { background: var(--steam-accent); color: #000; border-color: var(--steam-accent); font-weight: 600; }
+    .filter-btn.epic-active { background: var(--epic-accent); color: #fff; border-color: var(--epic-accent); font-weight: 600; }
+
+    .sort-select {
+      margin-left: auto;
+      background: var(--surface); border: 1px solid var(--border);
+      color: var(--text); padding: 7px 12px; border-radius: 8px; font-size: 13px;
+      cursor: pointer; outline: none;
+    }
+    .game-count { font-size: 13px; color: var(--text-muted); align-self: center; }
+
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    .game-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform .15s, border-color .15s;
+    }
+    .game-card:hover { transform: translateY(-3px); border-color: var(--steam-accent); }
+    .game-cover {
+      width: 100%; aspect-ratio: 16/9;
+      background: var(--surface2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 44px; position: relative;
+    }
+    .game-cover .platform-pip {
+      position: absolute; top: 8px; right: 8px;
+      width: 26px; height: 26px; border-radius: 6px;
+      display: grid; place-items: center; font-size: 12px;
+      backdrop-filter: blur(4px);
+    }
+    .game-cover .platform-pip.steam { background: rgba(27,40,56,.85); }
+    .game-cover .platform-pip.epic  { background: rgba(18,18,18,.85); }
+    .game-body { padding: 12px; }
+    .game-body .g-title { font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 8px; }
+    .game-body .g-hours { font-size: 22px; font-weight: 800; color: var(--steam-accent); line-height: 1; }
+    .game-body .g-unit  { font-size: 11px; color: var(--text-muted); }
+    .game-body .g-last  { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
+
+    /* ── SETTINGS PAGE ── */
+    .settings-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .settings-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 24px;
+    }
+    .settings-card h3 { font-size: 15px; font-weight: 700; margin-bottom: 20px; }
+    .account-row {
+      display: flex; align-items: center; gap: 16px; padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .account-row:last-child { border-bottom: none; }
+    .account-icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      display: grid; place-items: center; font-size: 20px;
+    }
+    .account-icon.steam { background: rgba(27,40,56,.8); }
+    .account-icon.epic  { background: rgba(18,18,18,.8); border: 1px solid #333; }
+    .account-info { flex: 1; }
+    .account-info .a-name   { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+    .account-info .a-status { font-size: 12px; }
+    .account-info .a-status.connected    { color: var(--green); }
+    .account-info .a-status.disconnected { color: var(--text-muted); }
+    .connect-btn {
+      padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: 600;
+      cursor: pointer; border: none; transition: all .15s;
+    }
+    .connect-btn.connected    { background: rgba(239,68,68,.15); color: #f87171; border: 1px solid rgba(239,68,68,.3); }
+    .connect-btn.disconnected { background: var(--steam-accent); color: #000; }
+
+    /* SCROLLBAR */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+    /* RESPONSIVE */
+    @media (max-width: 1100px) {
+      .stats-grid { grid-template-columns: repeat(2,1fr); }
+      .charts-row { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 800px) {
+      .sidebar { display: none; }
+      .settings-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="icon">🎮</div>
+    Nexus
+  </div>
+
+  <div class="sidebar-section">Ana Menü</div>
+  <div class="nav-item active" onclick="showPage('dashboard', this)">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+    Dashboard
+  </div>
+  <div class="nav-item" onclick="showPage('library', this)">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+    Kütüphane
+  </div>
+  <div class="nav-item" onclick="showPage('settings', this)">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+    Hesap Bağlantıları
+  </div>
+
+  <div class="sidebar-section">Filtreler</div>
+  <div class="nav-item" onclick="filterPlatform('all', this)">
+    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>
+    Tüm Platformlar
+  </div>
+  <div class="nav-item" onclick="filterPlatform('steam', this)">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#1b2838"/><circle cx="12" cy="12" r="4" fill="#66c0f4"/></svg>
+    Steam
+  </div>
+  <div class="nav-item" onclick="filterPlatform('epic', this)">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#121212"/><text x="7" y="17" font-size="13" fill="#0078f2" font-weight="900">E</text></svg>
+    Epic Games
+  </div>
+
+  <div class="platforms">
+    <div class="platform-badge steam">
+      <span>Steam</span>
+      <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:#66c0f4">
+        <div class="dot"></div> Bağlı
+      </div>
+    </div>
+    <div class="platform-badge epic">
+      <span>Epic Games</span>
+      <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:#7ab3f5">
+        <div class="dot"></div> Bağlı
+      </div>
+    </div>
+  </div>
+</aside>
+
+<!-- ══════════ MAIN ══════════ -->
+<div class="main">
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <h1 id="page-title">Dashboard</h1>
+    <div class="search-box">
+      <svg width="14" height="14" fill="none" stroke="#adadb8" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" placeholder="Oyun ara..." oninput="searchGames(this.value)" />
+    </div>
+    <div class="avatar">İB</div>
+  </div>
+
+  <!-- ════ DASHBOARD PAGE ════ -->
+  <div class="page active" id="page-dashboard">
+
+    <!-- STATS CARDS -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="icon-row">
+          <div class="label">Toplam Oyun</div>
+          <div class="stat-icon" style="background:rgba(102,192,244,.1)">🎮</div>
+        </div>
+        <div class="value">247</div>
+        <div class="sub">Steam: 189 &nbsp;·&nbsp; Epic: 58</div>
+      </div>
+      <div class="stat-card">
+        <div class="icon-row">
+          <div class="label">Toplam Oynama</div>
+          <div class="stat-icon" style="background:rgba(29,185,84,.1)">⏱</div>
+        </div>
+        <div class="value">4,821<span style="font-size:16px;font-weight:400;color:var(--text-muted)"> sa</span></div>
+        <div class="sub">Bu ay: 67 saat</div>
+      </div>
+      <div class="stat-card">
+        <div class="icon-row">
+          <div class="label">Bu Hafta</div>
+          <div class="stat-icon" style="background:rgba(0,120,242,.1)">📅</div>
+        </div>
+        <div class="value">18.5<span style="font-size:16px;font-weight:400;color:var(--text-muted)"> sa</span></div>
+        <div class="sub">↑ %12 geçen haftaya göre</div>
+      </div>
+      <div class="stat-card">
+        <div class="icon-row">
+          <div class="label">En Çok Oynanan</div>
+          <div class="stat-icon" style="background:rgba(255,165,0,.1)">🏆</div>
+        </div>
+        <div class="value" style="font-size:18px;margin-top:4px">The Witcher 3</div>
+        <div class="sub">154 saat · Steam</div>
+      </div>
+    </div>
+
+    <!-- CHARTS -->
+    <div class="charts-row">
+      <!-- BAR CHART -->
+      <div class="chart-card">
+        <h3>Son 7 Günün Oynama Süresi (saat)</h3>
+        <div class="bar-chart" id="bar-chart"></div>
+        <div style="display:flex;justify-content:center;gap:16px;margin-top:12px;">
+          <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-muted)">
+            <div style="width:12px;height:12px;border-radius:3px;background:var(--steam-accent)"></div> Steam
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-muted)">
+            <div style="width:12px;height:12px;border-radius:3px;background:var(--epic-accent)"></div> Epic
+          </div>
+        </div>
+      </div>
+
+      <!-- PIE CHART -->
+      <div class="chart-card">
+        <h3>Platform Dağılımı</h3>
+        <div class="pie-wrap">
+          <div class="pie">
+            <svg width="100" height="100" viewBox="0 0 36 36">
+              <!-- Steam: 76% → stroke-dasharray: 76 24 -->
+              <circle cx="18" cy="18" r="15.9155" fill="none" stroke="#1f1f23" stroke-width="4"/>
+              <circle cx="18" cy="18" r="15.9155" fill="none" stroke="var(--steam-accent)"
+                stroke-width="4" stroke-dasharray="76 24" stroke-linecap="round"/>
+              <!-- Epic: 24% offset 76 -->
+              <circle cx="18" cy="18" r="15.9155" fill="none" stroke="var(--epic-accent)"
+                stroke-width="4" stroke-dasharray="23 77" stroke-dashoffset="-76" stroke-linecap="round"/>
+            </svg>
+            <div class="pie-center"><span>247</span><span>oyun</span></div>
+          </div>
+          <div class="pie-legend">
+            <div class="legend-item"><div class="legend-dot" style="background:var(--steam-accent)"></div><span>Steam <strong>189</strong> oyun (76%)</span></div>
+            <div class="legend-item"><div class="legend-dot" style="background:var(--epic-accent)"></div><span>Epic <strong>58</strong> oyun (24%)</span></div>
+            <div style="font-size:11px;color:var(--text-muted);margin-top:8px">Toplam oynama süresi<br><strong style="color:var(--text);font-size:16px">4,821 saat</strong></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RECENT GAMES -->
+    <div class="section-header">
+      <h3>Son Oynananlar</h3>
+      <a onclick="showPage('library', document.querySelector('.nav-item:nth-child(5)'))">Tümünü Gör →</a>
+    </div>
+    <div class="recent-list" id="recent-list"></div>
+  </div>
+
+  <!-- ════ LIBRARY PAGE ════ -->
+  <div class="page" id="page-library">
+    <div class="filter-row">
+      <button class="filter-btn active" onclick="setFilter('all', this)">Tümü</button>
+      <button class="filter-btn" onclick="setFilter('steam', this)">Steam</button>
+      <button class="filter-btn" onclick="setFilter('epic', this)">Epic Games</button>
+      <button class="filter-btn" onclick="setFilter('action', this)">Aksiyon</button>
+      <button class="filter-btn" onclick="setFilter('rpg', this)">RPG</button>
+      <button class="filter-btn" onclick="setFilter('strategy', this)">Strateji</button>
+      <span class="game-count" id="game-count">247 oyun</span>
+      <select class="sort-select" onchange="sortGames(this.value)">
+        <option value="playtime">Oynama Süresine Göre</option>
+        <option value="alpha">A–Z</option>
+        <option value="recent">Son Oynanan</option>
+      </select>
+    </div>
+    <div class="games-grid" id="games-grid"></div>
+  </div>
+
+  <!-- ════ SETTINGS PAGE ════ -->
+  <div class="page" id="page-settings">
+    <div class="settings-grid">
+      <div class="settings-card">
+        <h3>Bağlı Hesaplar</h3>
+        <div class="account-row">
+          <div class="account-icon steam">🎮</div>
+          <div class="account-info">
+            <div class="a-name">Steam</div>
+            <div class="a-status connected" id="steam-status">● Bağlı · ibrahimuser</div>
+          </div>
+          <button class="connect-btn connected" id="steam-btn" onclick="togglePlatform('steam')">Bağlantıyı Kes</button>
+        </div>
+        <div class="account-row">
+          <div class="account-icon epic">🔷</div>
+          <div class="account-info">
+            <div class="a-name">Epic Games</div>
+            <div class="a-status connected" id="epic-status">● Bağlı · ibrahimuser_epic</div>
+          </div>
+          <button class="connect-btn connected" id="epic-btn" onclick="togglePlatform('epic')">Bağlantıyı Kes</button>
+        </div>
+      </div>
+
+      <div class="settings-card">
+        <h3>Kütüphane İstatistikleri</h3>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:12px;border-bottom:1px solid var(--border)">
+            <span style="font-size:14px;color:var(--text-muted)">Steam Oyunları</span>
+            <strong style="color:var(--steam-accent)">189 oyun · 3,671 sa</strong>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:12px;border-bottom:1px solid var(--border)">
+            <span style="font-size:14px;color:var(--text-muted)">Epic Oyunları</span>
+            <strong style="color:var(--epic-accent)">58 oyun · 1,150 sa</strong>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:12px;border-bottom:1px solid var(--border)">
+            <span style="font-size:14px;color:var(--text-muted)">Günlük Ortalama</span>
+            <strong>2.7 saat</strong>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:14px;color:var(--text-muted)">Son Senkronizasyon</span>
+            <strong style="color:var(--green)">Az önce</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="settings-card" style="grid-column:1/-1">
+        <h3>Görünüm Tercihleri</h3>
+        <div style="display:flex;gap:16px;flex-wrap:wrap">
+          <div style="display:flex;align-items:center;gap:10px;padding:14px 20px;background:var(--surface2);border-radius:8px;border:1px solid var(--steam-accent);cursor:pointer">
+            <span style="font-size:20px">🌙</span>
+            <div><div style="font-size:13px;font-weight:600">Koyu Tema</div><div style="font-size:11px;color:var(--text-muted)">Aktif</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:14px 20px;background:var(--surface2);border-radius:8px;border:1px solid var(--border);cursor:pointer">
+            <span style="font-size:20px">☀️</span>
+            <div><div style="font-size:13px;font-weight:600">Açık Tema</div><div style="font-size:11px;color:var(--text-muted)">Yakında</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:14px 20px;background:var(--surface2);border-radius:8px;border:1px solid var(--border);cursor:pointer">
+            <span style="font-size:20px">⊞</span>
+            <div><div style="font-size:13px;font-weight:600">Grid Görünüm</div><div style="font-size:11px;color:var(--text-muted)">Kütüphane</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:14px 20px;background:var(--surface2);border-radius:8px;border:1px solid var(--border);cursor:pointer">
+            <span style="font-size:20px">≡</span>
+            <div><div style="font-size:13px;font-weight:600">Liste Görünüm</div><div style="font-size:11px;color:var(--text-muted)">Kütüphane</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+// ── MOCK DATA ──
+const GAMES = [
+  { id:'s1',  title:'The Witcher 3',         platform:'steam', playtime:154, last:'2 gün önce',  emoji:'🗡️',  genre:'rpg'      },
+  { id:'s2',  title:'Counter-Strike 2',      platform:'steam', playtime:841, last:'Dün',          emoji:'🔫',  genre:'action'   },
+  { id:'s3',  title:'Cyberpunk 2077',         platform:'steam', playtime:87,  last:'5 gün önce',  emoji:'🤖',  genre:'rpg'      },
+  { id:'e1',  title:'Fortnite',               platform:'epic',  playtime:312, last:'Bugün',        emoji:'🏗️',  genre:'action'   },
+  { id:'s4',  title:'Civilization VI',        platform:'steam', playtime:203, last:'1 hafta önce',emoji:'🏛️',  genre:'strategy' },
+  { id:'e2',  title:'Rocket League',          platform:'epic',  playtime:445, last:'3 gün önce',  emoji:'⚽',  genre:'action'   },
+  { id:'s5',  title:'Elden Ring',             platform:'steam', playtime:67,  last:'10 gün önce', emoji:'⚔️',  genre:'rpg'      },
+  { id:'e3',  title:'Satisfactory',           platform:'epic',  playtime:189, last:'4 gün önce',  emoji:'🏭',  genre:'strategy' },
+  { id:'s6',  title:'Dota 2',                 platform:'steam', playtime:1240,last:'Bugün',        emoji:'🧙',  genre:'strategy' },
+  { id:'e4',  title:'Control',                platform:'epic',  playtime:22,  last:'2 hafta önce',emoji:'🌀',  genre:'action'   },
+  { id:'s7',  title:'Stardew Valley',         platform:'steam', playtime:94,  last:'6 gün önce',  emoji:'🌾',  genre:'rpg'      },
+  { id:'e5',  title:'Death Stranding',        platform:'epic',  playtime:41,  last:'3 hafta önce',emoji:'📦',  genre:'action'   },
+];
+
+const WEEK = [
+  { day:'Pzt', steam:1.5, epic:0   },
+  { day:'Sal', steam:3.0, epic:1.0 },
+  { day:'Çar', steam:0.5, epic:2.5 },
+  { day:'Per', steam:4.0, epic:0.5 },
+  { day:'Cum', steam:2.0, epic:3.0 },
+  { day:'Cmt', steam:5.0, epic:1.5 },
+  { day:'Paz', steam:1.5, epic:1.0 },
+];
+
+// ── STATE ──
+let currentFilter = 'all';
+let currentSearch = '';
+let steamConnected = true;
+let epicConnected  = true;
+
+// ── PAGE NAV ──
+function showPage(id, navEl) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  if (navEl) navEl.classList.add('active');
+  const titles = { dashboard:'Dashboard', library:'Kütüphane', settings:'Hesap Bağlantıları' };
+  document.getElementById('page-title').textContent = titles[id];
+  if (id === 'library') renderLibrary();
+}
+
+function filterPlatform(p, el) {
+  currentFilter = p;
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  el.classList.add('active');
+  showPage('library', null);
+  document.getElementById('page-title').textContent = 'Kütüphane';
+}
+
+// ── BAR CHART ──
+function renderBarChart() {
+  const max = Math.max(...WEEK.map(d => d.steam + d.epic));
+  const html = WEEK.map(d => {
+    const total = d.steam + d.epic;
+    const steamH = Math.round((d.steam / max) * 110);
+    const epicH  = Math.round((d.epic  / max) * 110);
+    return `<div class="bar-group">
+      <span class="bar-val" style="font-size:10px;color:var(--text-muted)">${total.toFixed(1)}</span>
+      <div style="display:flex;align-items:flex-end;gap:2px;height:110px">
+        <div class="bar" style="height:${steamH}px;background:var(--steam-accent);width:12px"></div>
+        <div class="bar" style="height:${epicH}px;background:var(--epic-accent);width:12px"></div>
+      </div>
+      <span class="bar-label">${d.day}</span>
+    </div>`;
+  }).join('');
+  document.getElementById('bar-chart').innerHTML = html;
+}
+
+// ── RECENT GAMES ──
+function renderRecent() {
+  const visible = GAMES
+    .filter(g => (g.platform === 'steam' ? steamConnected : epicConnected))
+    .sort((a,b) => b.playtime - a.playtime)
+    .slice(0, 5);
+  document.getElementById('recent-list').innerHTML = visible.map(g => `
+    <div class="recent-item">
+      <div class="game-thumb">${g.emoji}</div>
+      <div class="recent-info">
+        <div class="title">${g.title}</div>
+        <div class="meta">
+          <span class="platform-tag ${g.platform}">${g.platform === 'steam' ? 'Steam' : 'Epic'}</span>
+          ${g.genre.toUpperCase()} &nbsp;·&nbsp; Son: ${g.last}
+        </div>
+      </div>
+      <div class="playtime">
+        <div class="hours">${g.playtime}</div>
+        <div class="unit">saat</div>
+      </div>
+    </div>`).join('');
+}
+
+// ── LIBRARY ──
+function setFilter(f, el) {
+  currentFilter = f;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  renderLibrary();
+}
+
+function sortGames(val) { renderLibrary(val); }
+function searchGames(q) { currentSearch = q.toLowerCase(); renderLibrary(); showPage('library', null); document.getElementById('page-title').textContent = 'Kütüphane'; }
+
+function renderLibrary(sort = 'playtime') {
+  let games = GAMES
+    .filter(g => (g.platform === 'steam' ? steamConnected : epicConnected))
+    .filter(g => currentFilter === 'all' || g.platform === currentFilter || g.genre === currentFilter)
+    .filter(g => g.title.toLowerCase().includes(currentSearch));
+
+  if (sort === 'alpha') games.sort((a,b) => a.title.localeCompare(b.title));
+  else if (sort === 'recent') games.sort((a,b) => a.last.localeCompare(b.last));
+  else games.sort((a,b) => b.playtime - a.playtime);
+
+  document.getElementById('game-count').textContent = `${games.length} oyun`;
+  document.getElementById('games-grid').innerHTML = games.map(g => `
+    <div class="game-card">
+      <div class="game-cover">
+        ${g.emoji}
+        <div class="platform-pip ${g.platform}">${g.platform === 'steam' ? '🎮' : '🔷'}</div>
+      </div>
+      <div class="game-body">
+        <div class="g-title">${g.title}</div>
+        <div class="g-hours">${g.playtime}<span class="g-unit"> sa</span></div>
+        <div class="g-last">Son: ${g.last}</div>
+      </div>
+    </div>`).join('');
+}
+
+// ── PLATFORM TOGGLE ──
+function togglePlatform(p) {
+  if (p === 'steam') {
+    steamConnected = !steamConnected;
+    const btn = document.getElementById('steam-btn');
+    const status = document.getElementById('steam-status');
+    if (steamConnected) {
+      btn.textContent = 'Bağlantıyı Kes'; btn.className = 'connect-btn connected';
+      status.textContent = '● Bağlı · ibrahimuser'; status.className = 'a-status connected';
+    } else {
+      btn.textContent = 'Steam\'e Bağlan'; btn.className = 'connect-btn disconnected';
+      status.textContent = '○ Bağlı Değil'; status.className = 'a-status disconnected';
+    }
+  } else {
+    epicConnected = !epicConnected;
+    const btn = document.getElementById('epic-btn');
+    const status = document.getElementById('epic-status');
+    if (epicConnected) {
+      btn.textContent = 'Bağlantıyı Kes'; btn.className = 'connect-btn connected';
+      status.textContent = '● Bağlı · ibrahimuser_epic'; status.className = 'a-status connected';
+    } else {
+      btn.textContent = 'Epic\'e Bağlan'; btn.className = 'connect-btn disconnected';
+      status.textContent = '○ Bağlı Değil'; status.className = 'a-status disconnected';
+    }
+  }
+  renderRecent();
+  renderLibrary();
+  // update sidebar badges
+  document.querySelector('.platform-badge.steam').style.opacity = steamConnected ? '1' : '.4';
+  document.querySelector('.platform-badge.epic').style.opacity  = epicConnected  ? '1' : '.4';
+}
+
+// ── INIT ──
+renderBarChart();
+renderRecent();
+renderLibrary();
+</script>
+</body>
+</html>
